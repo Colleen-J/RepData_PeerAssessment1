@@ -3,7 +3,7 @@ title: "PA1_template"
 author: "C. Jackson"
 date: "November 23, 2018"
 output: html_document
-rmarkdown::render('PA1_template.Rmd', clean = FALSE)
+
 ---
 
 
@@ -12,7 +12,7 @@ rmarkdown::render('PA1_template.Rmd', clean = FALSE)
 ## C. Jackson
 
 ### Question 1 
-Loading and preprocessing the Daily Activity Data
+Loading and preprocessing the Daily Activity Data  
 File Input: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
 
 ```r
