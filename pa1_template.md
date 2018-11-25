@@ -3,7 +3,7 @@ title: "PA1_template"
 author: "C. Jackson"
 date: "November 23, 2018"
 output: html_document
-Input: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
+rmarkdown::render('PA1_template.Rmd', clean = FALSE)
 ---
 
 
@@ -13,6 +13,7 @@ Input: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
 
 ### Question 1 
 Loading and preprocessing the Daily Activity Data
+File Input: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
 
 ```r
 myactivity<-read.csv("C:/Users/wacja/Documents/Colleen work/Data science coursera/activity.csv")
