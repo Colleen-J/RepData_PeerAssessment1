@@ -1,31 +1,25 @@
----
-title: "PA1_template"
-author: "C. Jackson"
-date: "November 23, 2018"
-output: html_document
+Reproducible Results, Week 2
+============================
 
----
+C. Jackson
+----------
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+### Question 1
 
-# Reproducible Results, Week 2
-## C. Jackson
+Loading and preprocessing the Daily Activity Data
+File Input: <https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip>
 
-### Question 1 
-Loading and preprocessing the Daily Activity Data  
-File Input: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip
-```{r section1}
+``` r
 myactivity<-read.csv("C:/Users/wacja/Documents/Colleen work/Data science coursera/activity.csv")
 
 myactivity$mydate<-as.Date(myactivity$date, format = "%Y-%m-%d")
 ```
 
 ### Question 2
+
 Histogram of Total Daily Steps
 
-```{r section2}
+``` r
 # Sum the steps by date
 actday<-rowsum(myactivity$steps,myactivity$mydate, na.rm=TRUE)
 actday <- cbind(rownames(actday), data.frame(actday, row.names=NULL))
@@ -34,18 +28,29 @@ colnames(actday)<-c("Date","Steps")
 hist(actday$Steps,main="Total Daily Steps",xlab="Steps")
 ```
 
+![](PA1_template_files/figure-markdown_github/section2-1.png)
 
 ### Question 3
-Mean and Median of Total Daily Steps
-```{r section3}
-mean(actday$Steps)
 
+Mean and Median of Total Daily Steps
+
+``` r
+mean(actday$Steps)
+```
+
+    ## [1] 9354.23
+
+``` r
 median(actday$Steps)
 ```
 
+    ## [1] 10395
+
 ### Question 4
+
 Time-Series Plot: Time Intervals Over Average Daily Steps
-```{r section4}
+
+``` r
 intervals<-aggregate(myactivity$steps, by=list(myactivity$interval), FUN=mean, na.rm=TRUE)
 names(intervals)<-c("Interval","Step.Mean") 
 
@@ -53,21 +58,28 @@ plot(intervals$Interval, y=intervals$Step.Mean, type="l", main="Avg Steps per Ti
 axis(1, at=seq(0, 2355, by=50))
 ```
 
+![](PA1_template_files/figure-markdown_github/section4-1.png)
+
 ### Question 5
+
 The 5-minute interval that, on average, contains the maximum number of steps is the 835 Interval which is a morning hour interval
 
 ### Question 6
+
 Imputing Missing Values
 
 Number of Missing Values in Data:
-```{r section 6a}
+
+``` r
 sum(is.na(myactivity$steps))
 ```
 
-Histogram of Total Daily Steps with Imputed NA values  
-Imputation Strategy: Take the mean of each interval computed in Question 3, and use those values for the NA values for each time interval that is NA
-```{r section 6b}
+    ## [1] 2304
 
+Histogram of Total Daily Steps with Imputed NA values
+Imputation Strategy: Take the mean of each interval computed in Question 3, and use those values for the NA values for each time interval that is NA
+
+``` r
 myact<-myactivity
 # Peel off the rows with NA step values
 bad<-subset(myact,is.na(myact$steps))
@@ -93,25 +105,36 @@ colnames(newsum)<-c("Date","Steps", "mydate")
 ```
 
 ### Question 7
+
 Histogram of Total Daily Steps with Imputed Values
-```{r section 7a}
+
+``` r
 hist(newsum$Steps,main="Total Daily Steps",xlab="Steps")
 ```
 
+![](PA1_template_files/figure-markdown_github/section%207a-1.png)
+
 Mean and Median of Total Daily Steps
-```{r section 7b}
 
+``` r
 mean(newsum$Steps)
+```
 
+    ## [1] 10766.19
+
+``` r
 median(newsum$Steps)
 ```
+
+    ## [1] 10766.19
 
 Answer to question: Imputing the NA values normalizes the value curve in the histogram; mean and median each are now much higher than the data containing NA's, and they appear to be the same value
 
 ### Question 8
+
 Activity Patterns: Weekdays vs. Weekends; using Imputed Values
 
-```{r section8,fig.height=10}
+``` r
 # Add weekdays to dataframe
 newact$mday<-weekdays(newact$mydate)
 
@@ -136,5 +159,6 @@ plot(endintervals$Interval, y=endintervals$Step.Mean, type="l", main="Weekend Av
 axis(1, at=seq(0, 2355, by=50))
 ```
 
+![](PA1_template_files/figure-markdown_github/section8-1.png)
 
 Comparison shows that the activity on the weekends is generally higher than the activity during the weekdays
