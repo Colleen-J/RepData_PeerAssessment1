@@ -2,8 +2,13 @@
 title: "PA1_template"
 author: "C. Jackson"
 date: "November 23, 2018"
-output: html_document
-
+output: 
+  html_document:
+    # keep_md : When knitr processes an R Markdown input file it creates a 
+    #           markdown (md) file which is subsequently tranformed into HTML by
+    #           pandoc. If you want to keep a copy of the markdown file after
+    #           rendering you can do so using the keep_md option:
+    keep_md: true
 ---
 
 
@@ -34,7 +39,7 @@ colnames(actday)<-c("Date","Steps")
 hist(actday$Steps,main="Total Daily Steps",xlab="Steps")
 ```
 
-![plot of chunk section2](figure/section2-1.png)
+![](./figure/section2-1.png)<!-- -->
 
 
 ### Question 3
@@ -67,7 +72,7 @@ plot(intervals$Interval, y=intervals$Step.Mean, type="l", main="Avg Steps per Ti
 axis(1, at=seq(0, 2355, by=50))
 ```
 
-![plot of chunk section4](figure/section4-1.png)
+![](./figure/section4-1.png)<!-- -->
 
 ### Question 5
 The 5-minute interval that, on average, contains the maximum number of steps is the 835 Interval which is a morning hour interval
@@ -120,7 +125,7 @@ Histogram of Total Daily Steps with Imputed Values
 hist(newsum$Steps,main="Total Daily Steps",xlab="Steps")
 ```
 
-![plot of chunk section 7a](figure/section 7a-1.png)
+![](./figure/section 7a-1.png)<!-- -->
 
 Mean and Median of Total Daily Steps
 
@@ -171,7 +176,7 @@ plot(endintervals$Interval, y=endintervals$Step.Mean, type="l", main="Weekend Av
 axis(1, at=seq(0, 2355, by=50))
 ```
 
-![plot of chunk section8](figure/section8-1.png)
+![](./figure/section8-1.png)<!-- -->
 
 
 Comparison shows that the activity on the weekends is generally higher than the activity during the weekdays

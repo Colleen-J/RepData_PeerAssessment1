@@ -3,14 +3,14 @@ title: "PA1_template"
 author: "C. Jackson"
 date: "November 23, 2018"
 output:
-  html_document: default
-  keep_md: true
+  html_document
+     
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-knitr::opts_chunk$set( fig.path = "figs/fig-")
+knitr::opts_chunk$set( fig.path = "./figure/")
 ```
 
 # Reproducible Results, Week 2
